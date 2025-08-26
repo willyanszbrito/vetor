@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Notas de Corte - Vetor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Notas de Corte</h1>
+        <form id="simulador-form">
+            <!-- Passo 1: Seleção do Vestibular, Curso e Modalidade -->
+            <label for="vestibular">Vestibular:</label>
+            <select id="vestibular" name="vestibular" required>
+                <option value="">Selecione...</option>
+                <option value="PSC">PSC (UFAM)</option>
+                <option value="SIS">SIS (UEA)</option>
+                <option value="Macro">Macro (UEA)</option>
+            </select>
+            
+            <label for="curso">Curso:</label>
+            <select id="curso" name="curso" required>
+                <option value="">Selecione...</option>
+            </select>
+            
+            <label for="modalidade">Modalidade:</label>
+            <select id="modalidade" name="modalidade" required>
+                <option value="">Selecione...</option>
+            </select>
+
+            <!-- Campos específicos para o PSC -->
+            <div id="campos-psc" class="vestibular-campos" style="display:none;">
+                <h2>Notas Atuais (PSC)</h2>
+                <div class="input-group">
+                    <label for="acertos_psc1">Acertos PSC 1:</label>
+                    <input type="number" id="acertos_psc1" name="acertos_psc1" placeholder="Ex: 35">
+                </div>
+                <div class="input-group">
+                    <label for="acertos_psc2">Acertos PSC 2:</label>
+                    <input type="number" id="acertos_psc2" name="acertos_psc2" placeholder="Ex: 45">
+                </div>
+                <div class="input-group">
+                    <label for="nota_redacao_psc">Nota da Redação:</label>
+                    <input type="number" id="nota_redacao_psc" name="nota_redacao_psc" placeholder="Ex: 6.0" step="0.01">
+                </div>
+            </div>
+
+            <!-- Campos específicos para o SIS -->
+            <div id="campos-sis" class="vestibular-campos" style="display:none;">
+                <h2>Notas Atuais (SIS)</h2>
+                <div class="input-group">
+                    <label for="acertos_sis1">Acertos SIS 1:</label>
+                    <input type="number" id="acertos_sis1" name="acertos_sis1" placeholder="Ex: 50">
+                </div>
+                <div class="input-group">
+                    <label for="acertos_sis2_obj">Acertos Objetiva SIS 2:</label>
+                    <input type="number" id="acertos_sis2_obj" name="acertos_sis2_obj" placeholder="Ex: 50">
+                </div>
+                <div class="input-group">
+                    <label for="nota_red_sis2">Nota Redação SIS 2:</label>
+                    <input type="number" id="nota_red_sis2" name="nota_red_sis2" placeholder="Ex: 9.0" step="0.01">
+                </div>
+            </div>
+
+            <!-- Campos específicos para o Macro -->
+            <div id="campos-macro" class="vestibular-campos" style="display:none;">
+                <h2>Notas Atuais (Macro)</h2>
+                <div class="input-group">
+                    <label for="pontuacao_cg">Pontuação CG (Conhecimentos Gerais):</label>
+                    <input type="number" id="pontuacao_cg" name="pontuacao_cg" placeholder="Ex: 92.857" step="0.001">
+                </div>
+                <div class="input-group">
+                    <label for="pontuacao_ce">Pontuação CE (Conhecimentos Específicos + Redação):</label>
+                    <input type="number" id="pontuacao_ce" name="pontuacao_ce" placeholder="Ex: 96.000" step="0.001">
+                </div>
+            </div>
+            
+            <button type="submit">Simular</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
